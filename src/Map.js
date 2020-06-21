@@ -8,7 +8,7 @@ function Map() {
   useEffect(() => {
     d3.json("./usa.json").then(
       (states) => {
-        const projection = d3.geoMercator()
+        const projection = d3.geoAlbersUsa()
         const path = d3.geoPath().projection(projection)
         
         const svg = d3.select(svgr.current)
@@ -24,7 +24,7 @@ function Map() {
   }, [])
 
   return(<React.Fragment>
-    <svg ref={svgr} className="_svg"></svg>
+    <svg ref={svgr} className="_svg" viewBox="80 0 800 500"></svg>
   </React.Fragment>)
 }
 
