@@ -1,0 +1,12 @@
+._svg {
+  border: 2px solid green;
+}
+
+._statePath {
+  fill: #efefef;
+  stroke: #ddd;
+}
+
+._statePath:hover {
+  fill: tan;
+}
