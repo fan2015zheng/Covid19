@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import './Data.css'
 import Utils from './Utils.js'
 
@@ -11,7 +11,7 @@ function Data({stateId}) {
     return null
   }
 
-  if (stateId != prevStateId) {
+  if (stateId !== prevStateId) {
     const state = Utils.getUsState(stateId)
     console.log("haha",stateId)
     setPrevStateId(stateId)
