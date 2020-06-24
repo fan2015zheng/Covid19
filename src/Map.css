@@ -3,6 +3,6 @@
   stroke: #ddd;
 }
 
-._statePath:hover {
+._statePath:hover, ._selected {
   fill: tan;
 }

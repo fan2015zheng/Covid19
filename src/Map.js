@@ -10,6 +10,7 @@ function Map({selectLocation}) {
     const path = d3.geoPath().projection(projection)
 
     const svg = d3.select(svgr.current)
+
     svg
       .selectAll("path")
       .data(data.features)
@@ -17,10 +18,11 @@ function Map({selectLocation}) {
       .append("path")
       .attr("d", path)
       .attr("class", "_statePath")
-      .on("click", (d) => {
-        
+      .attr("id", (d,i) => { return "statePath"+i})
+      .on("click", (d,i) => {
+        svg.selectAll("path").classed("_selected", false)
+        svg.select("#statePath"+i).classed("_selected", true)
         const stateId = d.properties.STATE
-        
         selectLocation(stateId)
       })
       .append("title")

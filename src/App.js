@@ -12,7 +12,6 @@ function App() {
     fetch("https://covidtracking.com/api/v1/us/current.json")
     .then(res => res.json())
     .then(data => {
-      console.log(data[0].lastModified)
       setCovid(() => { return {
         positive: data[0].positive,
         death: data[0].death,
