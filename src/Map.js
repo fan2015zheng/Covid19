@@ -25,7 +25,6 @@ function Map({selectLocation}) {
       })
       .append("title")
       .text((d) => {
-        console.log(d.properties.GEO_ID,d.properties.STATE, d.properties.NAME)
         return d.properties.NAME
       })
   }
