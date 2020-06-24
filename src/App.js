@@ -31,16 +31,16 @@ function App() {
         </div>
         <div className="col-lg">
           <div className="row"> 
-            <div className="col pt-1">
-              U.S. total cases 
+            <div className="col-sm pt-1">
+              <div>U.S. total cases</div>
               <div className="_usaNum">{covid.positive}</div>
             </div>
-            <div className="col pt-1">
-              U.S. total death 
+            <div className="col-sm pt-1">
+              <div>U.S. total death</div>
               <div className="_usaNum">{covid.death}</div>
             </div>
-            <div className="col pt-1">
-              Last update
+            <div className="col-sm pt-1">
+              <div>Last update</div>
               <div className="_date">{ covid.lastModified && covid.lastModified.split('T')[0]}</div>
             </div>
           </div>
