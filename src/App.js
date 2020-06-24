@@ -26,22 +26,19 @@ function App() {
     <div className="container">
       
       <div className="row bg-info text-white p-2">
-        <div className="col-lg _appTitle">
-          Covid 19 USA
+        <div className="col-sm _appTitle">
+          Covid 19 USA 
+          <div className="_date">{ covid.lastModified && covid.lastModified.split('T')[0]}</div>
         </div>
-        <div className="col-lg">
+        <div className="col-sm">
           <div className="row"> 
-            <div className="col-sm pt-1">
-              <div>U.S. total cases</div>
+            <div className="col pt-1">
+              <div>Total cases</div>
               <div className="font-weight-bold">{covid.positive}</div>
             </div>
-            <div className="col-sm pt-1">
-              <div>U.S. total death</div>
+            <div className="col pt-1">
+              <div>Total death</div>
               <div className="font-weight-bold">{covid.death}</div>
-            </div>
-            <div className="col-sm pt-1">
-              <div>Last update</div>
-              <div>{ covid.lastModified && covid.lastModified.split('T')[0]}</div>
             </div>
           </div>
         </div>
