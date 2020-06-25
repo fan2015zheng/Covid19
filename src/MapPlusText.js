@@ -12,11 +12,12 @@ export default function MapPlusText() {
 
   function selectLocation (stateId) {
     setStateId(parseInt(stateId))
+    const state = Utils.getUsState(stateId)
+    setoState(state)
   }
   
   if (stateId && stateId !== prevStateId) {
     const state = Utils.getUsState(stateId)
-    setoState(state)
     const abbr = state.abbreviation.toLowerCase()
     setPrevStateId(stateId)
 
