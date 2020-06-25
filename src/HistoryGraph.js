@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import './HistoryGraph.css'
 import * as d3 from 'd3'
 
@@ -7,45 +7,49 @@ export default function HistoryGraph({state, history}) {
   const [isCase, setIsCase] = useState(false)
   const caseBtnr = useRef()
   const deathBtnr = useRef()
+  const svgr = useRef()
+  const current = history[0]
+
   const viewBoxWidth = 400
   const viewBoxHeight = 200
 
-  const current = history[0]
-console.log(current)
-  const svgr = useRef()
-  const svg = d3.select(svgr.current)
+  useEffect(DrawGraph)
 
-console.log(svgr.current)
-  const xScale = d3.scaleLinear()
-    .domain([0, history.length-1])
-    .range([viewBoxWidth, 0])
+  function DrawGraph() {
+    const svg = d3.select(svgr.current)
 
-  const yScale = d3.scaleLinear()
-    .domain([0, current ? (isCase ? current.positive: current.death) : 1000])
-    .range([viewBoxHeight, 0])
+    const xScale = d3.scaleLinear()
+      .domain([0, history.length-1])
+      .range([viewBoxWidth, 0])
 
-  svg
-    .select('#xAxis')
-    .style("transform", `translateY(${viewBoxHeight}px)`)
-    .call(d3.axisBottom(xScale))
+    const yScale = d3.scaleLinear()
+      .domain([0, current ? (isCase ? current.positive: current.death) : 1000])
+      .range([viewBoxHeight, 0])
 
-  svg
-    .select('#yAxis')
-    .call(d3.axisLeft(yScale).ticks(5))
+    svg
+      .select('#xAxis')
+      .style("transform", `translateY(${viewBoxHeight}px)`)
+      .call(d3.axisBottom(xScale))
 
-  const line = d3.line()
-    .x((d, i) => xScale(i))
-    .y((d) => yScale(isCase ? d.positive : d.death))
-    .curve(d3.curveBasis)
+    svg
+      .select('#yAxis')
+      .call(d3.axisLeft(yScale).ticks(5))
 
-  svg.selectAll(".line")
-    .data([history])
-    .join("path")
-    .attr("class", "line")
-    .attr("d", line)
-    .attr("fill", "none")
-    .attr("stroke", "black")
+    const line = d3.line()
+      .x((d, i) => xScale(i))
+      .y((d) => yScale(isCase ? d.positive : d.death))
+      .curve(d3.curveBasis)
 
+    svg.selectAll(".line")
+      .data([history])
+      .join("path")
+      .attr("class", "line")
+      .attr("d", line)
+      .attr("fill", "none")
+      .attr("stroke", "black")
+  }
+
+  
   function caseGraph() {
     selectBtn(caseBtnr.current)
     unSelectBtn(deathBtnr.current)
