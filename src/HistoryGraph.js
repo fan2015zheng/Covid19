@@ -11,7 +11,7 @@ export default function HistoryGraph({state, history}) {
   const viewBoxHeight = 200
 
   const current = history[0]
-
+ console.log(current)
   const svgr = useRef()
   const svg = d3.select(svgr.current)
   

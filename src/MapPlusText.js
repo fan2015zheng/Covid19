@@ -12,14 +12,13 @@ export default function MapPlusText() {
 
   function selectLocation (stateId) {
     setStateId(parseInt(stateId))
-    const state = Utils.getUsState(stateId)
-    setoState(state)
   }
   
   if (stateId && stateId !== prevStateId) {
     const state = Utils.getUsState(stateId)
-    const abbr = state.abbreviation.toLowerCase()
+    setoState(state)
     setPrevStateId(stateId)
+    const abbr = state.abbreviation.toLowerCase()
 
     fetch(`https://covidtracking.com/api/v1/states/${abbr}/daily.json`)
     .then(res => res.json())
