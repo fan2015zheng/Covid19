@@ -11,10 +11,11 @@ export default function HistoryGraph({state, history}) {
   const viewBoxHeight = 200
 
   const current = history[0]
- console.log(current)
+console.log(current)
   const svgr = useRef()
   const svg = d3.select(svgr.current)
-  
+
+console.log(svgr.current)
   const xScale = d3.scaleLinear()
     .domain([0, history.length-1])
     .range([viewBoxWidth, 0])
