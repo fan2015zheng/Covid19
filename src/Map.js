@@ -36,7 +36,8 @@ function Map({selectLocation}) {
   })
 
   return(<>
-    <svg ref={svgr} className="_svg" viewBox="80 0 800 500"></svg>
+    <svg ref={svgr} viewBox="80 0 800 500">
+    </svg>
   </>)
 }
 

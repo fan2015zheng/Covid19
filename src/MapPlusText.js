@@ -1,50 +1,47 @@
 import React, { useState } from 'react'
 import Map from './Map'
 import Utils from './Utils.js'
+import HistoryGraph from './HistoryGraph'
 
 export default function MapPlusText() {
 
-  const [covid, setCovid] = useState({})
+  const [history, setHistory] = useState([])
   const [stateId, setStateId] = useState()
   const [prevStateId, setPrevStateId] = useState(0)
+  const [oState, setoState] = useState({})
 
   function selectLocation (stateId) {
     setStateId(parseInt(stateId))
   }
-
+  
   if (stateId && stateId !== prevStateId) {
     const state = Utils.getUsState(stateId)
+    setoState(state)
+    const abbr = state.abbreviation.toLowerCase()
     setPrevStateId(stateId)
-    fetch(`https://covidtracking.com/api/v1/states/${state.abbreviation.toLowerCase()}/current.json`)
+
+    fetch(`https://covidtracking.com/api/v1/states/${abbr}/daily.json`)
     .then(res => res.json())
     .then(data => {
-      setCovid(() => { return {
-        stateName: state.name,
-        positive: data.positive,
-        death: data.death
-      }})
+      setHistory(data)
     })
   }
 
-  let stateText = null
-  if (covid.stateName) {
-    stateText = (
-      <div className="col-md-3">
-      <div className="pl-4 pt-3 pl-md-0 pt-md-5">
-        <div className="font-weight-bold">{covid.stateName}</div>
-        <div>Total cases: {covid.positive}</div>
-        <div>Total death: {covid.death}</div>
-      </div>
+  let stateInfo = null
+  if (history.length > 0) {
+    stateInfo = (
+    <div className="col-md">
+      <HistoryGraph history={history} state={oState}/>
     </div>
     )
   }
   return(
     <>    
-      <div className="row">
-        <div className="col-md-9">
+      <div className="row mt-2">
+        <div className="col-md">
           <Map selectLocation={selectLocation}/>
         </div>
-        {stateText}
+        {stateInfo}
       </div>
     </>
   )

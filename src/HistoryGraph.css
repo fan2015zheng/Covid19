@@ -1,0 +1,13 @@
+._histSvg {
+  margin:  10px 20px 20px;
+  overflow: visible;
+}
+
+._stateName {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+._xPlain {
+  font-size: small;
+}
