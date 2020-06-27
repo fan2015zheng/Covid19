@@ -82,7 +82,7 @@ export default function HistoryGraph({state, history}) {
           <small>Total cases</small> {current?.positive}
         </div>
         <div className="col">
-          <small>Total death</small> {current?.death}
+          <small>Total deaths</small> {current?.death}
         </div>
       </div>
    

@@ -39,7 +39,7 @@ function App() {
               <div className="font-weight-bold">{covid.positive}</div>
             </div>
             <div className="col pt-1">
-              <div>US total death</div>
+              <div>US total deaths</div>
               <div className="font-weight-bold">{covid.death}</div>
             </div>
           </div>
