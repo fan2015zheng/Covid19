@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Map from './Map'
 import Utils from './Utils.js'
 import HistoryGraph from './HistoryGraph'
+import './MapPlusText.css'
 
 export default function MapPlusText() {
 
@@ -28,11 +29,19 @@ export default function MapPlusText() {
   }
 
   let stateInfo = null
+  let dataSource = null
   if (history.length > 0) {
     stateInfo = (
     <div className="col-md">
       <HistoryGraph history={history} state={oState}/>
     </div>
+    )
+  }
+  else {
+    dataSource =  (
+      <div className="text-info p-1 mt-2 pt-2 _source">
+        Data source: covidtracking.com
+      </div>
     )
   }
   return(
@@ -43,6 +52,7 @@ export default function MapPlusText() {
         </div>
         {stateInfo}
       </div>
+      {dataSource}
     </>
   )
 }

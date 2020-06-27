@@ -24,9 +24,13 @@ function App() {
     <div className="container">
       
       <div className="row bg-info text-white p-2">
-        <div className="col-sm _appTitle">
-          Covid 19 USA 
-          <div className="_date">Last update { covid.lastModified && covid.lastModified.split('T')[0]}</div>
+        <div className="col-sm">
+          <div className="_appTitle">
+            Covid 19 USA 
+          </div>
+          <div className="_date">
+            Last update { covid.lastModified && covid.lastModified.split('T')[0]}
+          </div>
         </div>
         <div className="col-sm">
           <div className="row"> 
@@ -40,8 +44,8 @@ function App() {
             </div>
           </div>
         </div>
-      </div>     
-      <MapPlusText />
+      </div> 
+      <MapPlusText /> 
     </div>
    
   </>);
