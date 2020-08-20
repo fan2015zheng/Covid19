@@ -11,6 +11,8 @@ export default function MapPlusText() {
   const [prevStateId, setPrevStateId] = useState(0)
   const [oState, setoState] = useState({})
 
+  const proxyurl = "https://cors-anywhere.herokuapp.com/"
+
   function selectLocation (stateId) {
     setStateId(parseInt(stateId))
   }
@@ -21,7 +23,7 @@ export default function MapPlusText() {
     setPrevStateId(stateId)
     const abbr = state.abbreviation.toLowerCase()
 
-    fetch(`https://covidtracking.com/api/v1/states/${abbr}/daily.json`)
+    fetch(`${proxyurl}https://covidtracking.com/api/v1/states/${abbr}/daily.json`)
     .then(res => res.json())
     .then(data => {
       setHistory(data)

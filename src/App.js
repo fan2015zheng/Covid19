@@ -5,17 +5,22 @@ import MapPlusText from './MapPlusText'
 function App() {
 
   const [covid, setCovid] = useState({})
+  const proxyurl = "https://cors-anywhere.herokuapp.com/"
   
   if (!covid.lastModified) {
     
-    fetch("https://covidtracking.com/api/v1/us/current.json")
+    fetch(`${proxyurl}https://covidtracking.com/api/v1/us/current.json`)
     .then(res => res.json())
     .then(data => {
+      console.log(data)
       setCovid(() => { return {
         positive: data[0].positive,
         death: data[0].death,
         lastModified: data[0].lastModified
       }})
+    })
+    .catch(() => {
+      console.log("covidtracking.com API is no longer accessible")
     })
   }
 
